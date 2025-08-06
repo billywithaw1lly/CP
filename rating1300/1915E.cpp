@@ -5,26 +5,51 @@ typedef long long ll;
     ios::sync_with_stdio(false); \
     cin.tie(nullptr);
 
-ll n, k;
-ll x;
-vector<ll> a;
-bool check(ll x)
-{
-    ll moves = 0;
-    for (int i = n / 2; i < n; i++)
+
+void solve(){
+    int n;
+    cin >> n;
+    vector<int> a(n);
+
+    for (int &x : a)
+        cin >> x;
+
+    for (int i = 0; i < n; i++)
     {
-        if (x - a[i] > 0)
-            moves += x - a[i];
-        if (moves > k)
-            return false;
+        if (i % 2 == 1)
+            a[i] = -a[i];
     }
-    if (moves <= k)
-        return true;
-    else
-        return false;
+
+    unordered_map<int, int> prefixIndex;
+    prefixIndex[0] = 0;
+
+    int prefixSum = 0;
+    for (int i = 0; i < n; i++)
+    {
+        prefixSum += a[i];
+
+        if (prefixIndex.count(prefixSum))
+        {
+            int l = prefixIndex[prefixSum] + 1;
+            int r = i + 1;
+            cout << "YES\n";
+            return;
+        }
+        else
+        {
+            prefixIndex[prefixSum] = i + 1;
+        }
+    }
+
+    cout << "NO\n";
 }
+
 int main()
 {
     fastio;
     int t; cin>>t;
+
+    while(t--)
+    solve();
+    return 0;
 }
