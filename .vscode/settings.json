@@ -1,9 +1,10 @@
 {
-    "files.associations": {
-        "iostream": "cpp",
-        "vector": "cpp",
-        "set": "cpp"
-    },
-    "C_Cpp.errorSquiggles": "enabled",
-    "errorLens.statusBarColorsEnabled": true
+  "files.associations": {
+    "iostream": "cpp",
+    "vector": "cpp",
+    "set": "cpp",
+    "regex": "cpp"
+  },
+  "C_Cpp.errorSquiggles": "enabled",
+  "errorLens.statusBarColorsEnabled": true
 }
