@@ -15,12 +15,12 @@ int T;
 
 void solve()
 {
-    int n; cin >> n;
+    int n, k;
+    cin >> n >> k;
     vi a(n);
-    vi b(n);
-
     for(auto &it : a) cin >> it;
-    for(auto &it : b) cin >> it;
+
+    
 }
 
 int main()
