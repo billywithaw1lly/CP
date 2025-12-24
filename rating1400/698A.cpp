@@ -29,7 +29,7 @@ void solve()
     for(int i = 1; i < n; i++){
         if(a[i - 1] == 1 && a[i] == 3 ) a[i] = 2;
         else if(a[i - 1] == 2 && a[i] == 3) a[i] = 1;
-        else if(a[i - 1] == a[i] && a[i] != 3) a[i - 1] = 0;
+        else if(a[i - 1] == a[i] && a[i] != 3) a[i] = 0;
     }
     for (int i = 0; i < n; i++) if(a[i] == 0) rest++;
 
