@@ -7,9 +7,11 @@ typedef long long ll;
     cin.tie(nullptr)
 #define nl "\n"
 using vi = vector<int>;
+using vll = vector<long long>;
 using vvi = vector<vector<int>>;
-using vii = vector<pair<int, int>>;
-using vll = vector<pair<ll, ll>>;
+using vpii = vector<pair<int, int>>;
+using vpll = vector<pair<ll, ll>>;
+#define pb push_back
 
 int T;
 
@@ -17,30 +19,14 @@ int T;
 // may the kermit bless me
 void solve()
 {
-    ll x; cin >> x;
-    bool possible = false;
-    for(int i = 0; i < 20; i++){
-        if(x % 11 == 0){
-            possible = true;
-            break;
-        }
-        x -= 111;
-        if(x < 0) break;
-    }
-
-    if(possible){
-        cout << "YES" << nl;
-    } else {
-        cout << "NO" << nl;
-    }
     
 }
 
 int main()
 {
     fastio;
-    int t;
-    cin >> t;
+    int t = 1;
+    // cin >> t;
 
     for (T = 1; T <= t; T++)
     {
