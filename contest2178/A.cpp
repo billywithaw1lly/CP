@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+#define fastio                   \
+    ios::sync_with_stdio(false); \
+    cin.tie(nullptr)
+#define nl "\n"
+using vi = vector<int>;
+using vll = vector<long long>;
+using vvi = vector<vector<int>>;
+using vpii = vector<pair<int, int>>;
+using vpll = vector<pair<ll, ll>>;
+#define pb push_back
+
+int T;
+// the failing attempt
+// may the kermit bless me
+
+void solve()
+{
+    string s;
+    cin >> s;
+    int freq = 0;
+    for (int i = 0; i < s.size(); i++)
+    {
+        if (s[i] == 'Y')
+            freq++;
+    }
+
+    if (freq <= 1){
+        cout << "YES" << nl;
+    }
+    else{
+        cout << "NO" << nl;
+    }
+}
+
+int main()
+{
+    fastio;
+    int t;
+    cin >> t;
+
+    for (T = 1; T <= t; T++)
+    {
+        solve();
+    }
+
+    return 0;
+}
