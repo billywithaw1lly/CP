@@ -13,27 +13,14 @@ using vpii = vector<pair<int, int>>;
 using vpll = vector<pair<ll, ll>>;
 #define pb push_back
 int T;
+const int MOD = 998244353;
 // the failing attempt
 // may the kermit bless me
 
 void solve()
 {
-    int n;
-    string s;
-    cin >> n >> s;
-
-    bool has_2026 = (s.find("2026") != string::npos);
-    bool no_2025 = (s.find("2025") == string::npos);
-
-    if (has_2026 || no_2025)
-    {
-        cout << 0 << nl;
-    }
-    else
-    {
-        cout << 1 << nl;
-    }
-    return;
+    // n, m , k -> friends, boxes, coins
+    // friend x, y , z - > atleast a beauty of x, atleast y coins (necessary), 
 }
 
 int main()
@@ -49,4 +36,3 @@ int main()
 
     return 0;
 }
-
