@@ -70,8 +70,8 @@ void solve()
         return;
     }
     ll h = calc(left, leftcnt);
-    long long r = fact[n - leftcnt];
-    long long ans = (h * r) % MOD;
+    ll r = fact[n - leftcnt];
+    ll ans = (h * r) % MOD;
     cout << ans << nl;
 }
 
