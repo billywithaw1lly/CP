@@ -18,36 +18,81 @@ int T;
 
 void solve()
 {
-    // n, m , k -> friends, boxes, coins
-    // friend x, y , z - > atleast a beauty of x, atleast y coins (necessary), worth of happiness
-    //maximise happy friends, gift may or maynot be in a box, must purchase gifts for all with k coins
-
-    ll n, m , k;
+    ll n, m, k;
     cin >> n >> m >> k;
+    ll ans = 0;
 
-    vll box(m);
-    for (auto &s : box)
-        cin >> s;
-
-    sort(box.begin(), box.end());
-    vpll fri(n);
-
-    ll sumy = 0;
-    for(int i = 0; i < n; i++){
-        ll x, y , z;
-        cin >> x >> y >> z;
-        fri[i].first = x;
-        fri[i].second = z - y;
-        sumy += y;
+    multiset<ll> box;
+    for (int i = 0; i < m; i++)
+    {
+        ll b;
+        cin >> b;
+        box.insert(b);
     }
-    if(sumy > k){
+    ll basicCost = 0;
+
+    struct Friend
+    {
+        ll beauty_req;
+        ll upgrade_cost;
+        bool satisfied = false;
+    };
+
+    vector<Friend> a(n);
+    for (int i = 0; i < n; i++)
+    {
+        ll x, y, z;
+        cin >> x >> y >> z;
+        a[i].beauty_req = x;
+        a[i].upgrade_cost = z - y;
+        basicCost += y;
+    }
+
+    if (basicCost > k)
+    {
         cout << 0 << nl;
         return;
     }
-    k -= sumy;
+    k -= basicCost;
 
+    sort(a.begin(), a.end(), [](const Friend &f1, const Friend &f2)
+        { return f1.upgrade_cost > f2.upgrade_cost; });
+
+    for (int i = 0; i < n; i++)
+    {
+        auto it = box.lower_bound(a[i].beauty_req);
+        if (it != box.end())
+        {
+            ans++;
+            a[i].satisfied = true;
+            box.erase(it);
+        }
+    }
+
+    vector<ll> remaining_upgrades;
+    for (int i = 0; i < n; i++)
+    {
+        if (!a[i].satisfied)
+        {
+            remaining_upgrades.push_back(a[i].upgrade_cost);
+        }
+    }
+    sort(remaining_upgrades.begin(), remaining_upgrades.end());
+    for (ll cost : remaining_upgrades)
+    {
+        if (k >= cost)
+        {
+            k -= cost;
+            ans++;
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    cout << ans << nl;
 }
-
 int main()
 {
     fastio;
