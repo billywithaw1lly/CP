@@ -18,37 +18,50 @@ int T;
 // the failing attempt
 // may the kermit bless me
 
-bool exist(string subs, const string &s){
-    int n = subs.size();
-    int inisub = 0;
-
-    for(int i = 0; i < s.size(); i++){
-        if(s[i] == subs[inisub]){
-            inisub++;
-            if(inisub == n){
-                return true;
-            }
-        }
+int findNext(const string &s, int start_index, char target)
+{
+    for (int i = start_index; i < s.size(); i++)
+    {
+        if (s[i] == target)
+            return i;
     }
-    return false;
+    return -1;
 }
 
-bool generate(const vc &chars, string &current, int n, string &s)
+bool generateWorstSequence(int n, int k, const string &s, string &current, int current_s_idx)
 {
-    if((int)current.size() == n){
-        if(!exist(current, s)){
-            cout << "NO" << nl;
-            cout << current << nl;
-            return true;
-        }
+    if ((int)current.size() == n)
+    {
         return false;
     }
-    
-    for(char c : chars){
-        current.pb(c);
-        if(generate(chars, current, n, s)) return true;
-        current.pop_back();
+    int max_next_idx = -1;
+    char worst_char = ' ';
+
+    for (int i = 0; i < k; i++)
+    {
+        char c = 'a' + i;
+        int next_idx = findNext(s, current_s_idx, c);
+        if (next_idx == -1)
+        {
+            cout << "NO" << nl;
+            string ans = current + c;
+            while ((int)ans.size() < n)
+                ans += 'a';
+            cout << ans << nl;
+            return true;
+        }
+        if (next_idx > max_next_idx)
+        {
+            max_next_idx = next_idx;
+            worst_char = c;
+        }
     }
+    current.push_back(worst_char);
+    if (generateWorstSequence(n, k, s, current, max_next_idx + 1))
+    {
+        return true;
+    }
+
     return false;
 }
 
@@ -64,15 +77,10 @@ void solve()
     cin >> s;
 
     string current = "";
-
-    vc chars(k);
-    for(int i = 0; i < k; i++){
-        chars[i] = 'a' + i;
-    }
-    if(generate(chars, current, n, s)){
+    if (generateWorstSequence(n, k, s, current, 0))
+    {
         return;
     }
-    //checking all the subs
 
     cout << "YES" << nl;
 }
