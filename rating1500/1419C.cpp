@@ -1,9 +1,4 @@
 #include <bits/stdc++.h>
-
-// --- PBDS HEADERS ---
-#include <ext/pb_ds/assoc_container.hpp>
-#include <ext/pb_ds/tree_policy.hpp>
-using namespace __gnu_pbds;
 using namespace std;
 
 typedef long long ll;
@@ -23,35 +18,11 @@ int T;
 // the failing attempt
 // may the kermit bless me
 
-typedef tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update> ordered_set;
-
-const int N = 200005;
-
-vpii arr;
-ll ans;
-ordered_set st;
+const int N = 100005;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    arr.assign(n, {});
-
-    for (auto &p : arr)
-        cin >> p.second >> p.first;
-
-    sort(arr.begin(), arr.end());
-
-    ans = 0;
-    st.clear();
-
-    for (auto p : arr)
-    {
-        ans += st.size() - st.order_of_key(p.second);
-        st.insert(p.second);
-    }
-
-    cout << ans << nl;
+    
 }
 int main()
 {
