@@ -22,7 +22,36 @@ const int N = 100005;
 
 void solve()
 {
+    int n, x;
+    cin >> n >> x;
+    vi a(n);
+
+    for(auto &it : a)
+        cin >> it;
     
+    int count = 0;
+    int sum = 0;
+
+    for(int i = 0; i < n; i++){
+        if(a[i] == x) count++;
+        sum += a[i];
+    }
+
+    if(count == n){
+        cout << 0 << nl;
+        return;
+    }
+    if(count > 0){
+        cout << 1 << nl;
+        return;
+    }
+    if(sum == n * x){
+        cout << 1 << nl;
+        return;
+    }
+
+    cout << 2 << nl;
+
 }
 int main()
 {
